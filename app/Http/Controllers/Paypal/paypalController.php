@@ -38,7 +38,7 @@ class paypalController extends Controller
 
         /**
          * Here i will make object from ExpressCheckout
-         * and i will pass @param $data in object and with response
+         * and i will pass @-param $data in object and with response
          */
         $provider = new ExpressCheckout($data);
         $respone = $provider->setExpressCheckout($data);
@@ -50,12 +50,32 @@ class paypalController extends Controller
     
     public function cancel() 
     {
-        
+        /**
+         * Here i will make back to left page
+         */
+        dd('You are cancelled this payment');
     }
 
     
-    public function success() 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function success(Request $request) 
     {
+        $provider = new ExpressCheckout();
+        // but here i will using get not set (to get details of data)
+        $respone = $provider->getExpressCheckoutDetails($request->token);
+        // Here i will make in array have stroupper that have small leter and ACK thats Meaning information 
+        if(in_array(strtoupper($respone['ACK']) , ['SUCCESS' , 'SUCCESSWITHWARNING']))
+        {
+            dd('Your payment was successfully , Thanks');
+
+        }
         
+        // if failed return this like else of if
+        dd('Please try again letter'); 
     }
 }
