@@ -19,9 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 /**
  * Here is all payments of paypal
  */
+
+ Route::get('go-payment' , [paypalController::class , 'goPayment'] )->name('payment.go');
 Route::get('payment', [paypalController::class, 'payment'])->name('payment');
 Route::get('cancel', [paypalController::class, 'cancel'])->name('payment.cancel');
 Route::get('payment/success', [paypalController::class, 'success'])->name('payment.success');

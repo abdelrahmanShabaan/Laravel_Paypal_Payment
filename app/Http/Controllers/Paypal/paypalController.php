@@ -9,6 +9,7 @@ use Srmklive\PayPal\Services\ExpressCheckout;
 class paypalController extends Controller
 {
     
+
     public function payment() 
     {
         // Here i will make array Have data of purshising
@@ -77,5 +78,11 @@ class paypalController extends Controller
         
         // if failed return this like else of if
         dd('Please try again letter'); 
+    }
+
+
+    public function goPayment() 
+    {
+         return view('products.welcome');
     }
 }
