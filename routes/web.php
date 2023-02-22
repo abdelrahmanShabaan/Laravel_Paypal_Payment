@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Paypal\paypalController;
 use Illuminate\Support\Facades\Route;
+use Srmklive\PayPal\Services\ExpressCheckout;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('payment', [paypalController::class, 'payment'])->name('payment');
+Route::get('cancel', [paypalController::class, 'cancel'])->name('payment.cancel');
+Route::get('payment/success', [paypalController::class, 'success'])->name('payment.success');
